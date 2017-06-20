@@ -18,14 +18,23 @@ puts "-----> Decrypting configuration settings"
 
 build_dir, cache_dir, env_dir = ARGV
 
-p "BEFORE:"
-p ENV
-
 Dir["#{env_dir}/*"].each do |filename|
   ENV[File.basename(filename)] = slurp(filename)
 end
 
-p "AFTER:"
-p ENV
+Dir.chdir(build_dir)
+command = "rake -T db"
+
+Open3.popen3(command) do |stdin, stdout, stderr, status|
+  if status.value.success?
+    print_results(stdout.read)
+    `find .ruby_inline`
+    exit 0
+  else
+    print_results(stderr.read)
+    exit 1
+  end
+end
+
 
 exit 0
