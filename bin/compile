@@ -23,7 +23,7 @@ Dir["#{env_dir}/*"].each do |filename|
 end
 
 Dir.chdir(build_dir)
-command = "rake -T db"
+command = "bundle exec ./bin/rails --help"
 
 Open3.popen3(command) do |stdin, stdout, stderr, status|
   if status.value.success?
