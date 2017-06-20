@@ -23,7 +23,7 @@ Dir["#{env_dir}/*"].each do |filename|
 end
 
 Dir.chdir(build_dir)
-command = "bin/rails runner \"cf = Xirr::Cashflow.new; cf << Xirr::Transaction.new(-1000,  date: '2014-01-01'.to_date); Xirr::Transaction.new(-2000,  date: '2014-03-01'.to_date); Xirr::Transaction.new( 4500, date: '2015-12-01'.to_date); cf.xirr; puts system('find / -name .ruby_inline')"
+command = "bin/rails runner \"cf = Xirr::Cashflow.new; cf << Xirr::Transaction.new(-1000,  date: '2014-01-01'.to_date); Xirr::Transaction.new(-2000,  date: '2014-03-01'.to_date); Xirr::Transaction.new( 4500, date: '2015-12-01'.to_date); cf.xirr; puts system('find / -name .ruby_inline')\""
 
 Open3.popen3(command) do |stdin, stdout, stderr, status|
   if status.value.success?
