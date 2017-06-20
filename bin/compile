@@ -22,6 +22,6 @@ Dir["#{env_dir}/*"].each do |filename|
   ENV[File.basename(filename)] = slurp(filename)
 end
 
-ap ENV
+p ENV
 
 exit 0
