@@ -28,7 +28,7 @@ command = "rake -T db"
 Open3.popen3(command) do |stdin, stdout, stderr, status|
   if status.value.success?
     print_results(stdout.read)
-    `find .ruby_inline`
+    `find / -name '.ruby_inline*'`
     exit 0
   else
     print_results(stderr.read)
