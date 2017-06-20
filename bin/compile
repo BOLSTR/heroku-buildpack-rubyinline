@@ -23,7 +23,7 @@ Dir["#{env_dir}/*"].each do |filename|
 end
 
 Dir.chdir(build_dir)
-command = "bin/rails -e #{ENV['RAILS_ENV']} runner 'puts Rails.env'"
+command = "bin/rails runner 'puts Rails.env'"
 
 Open3.popen3(command) do |stdin, stdout, stderr, status|
   if status.value.success?
