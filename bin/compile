@@ -18,10 +18,14 @@ puts "-----> Decrypting configuration settings"
 
 build_dir, cache_dir, env_dir = ARGV
 
+p "BEFORE:"
+p ENV
+
 Dir["#{env_dir}/*"].each do |filename|
   ENV[File.basename(filename)] = slurp(filename)
 end
 
+p "AFTER:"
 p ENV
 
 exit 0
