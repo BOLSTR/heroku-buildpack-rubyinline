@@ -1,0 +1,5 @@
+#!/usr/bin/env ruby
+
+# we fail in compile if something will go wrong, so let's be optimistic here
+puts "RubyInline compilation"
+exit 0

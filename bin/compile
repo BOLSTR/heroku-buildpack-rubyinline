@@ -1,0 +1,27 @@
+#!/usr/bin/env ruby
+require 'open3'
+def indent(string)
+  puts "       #{string}"
+end
+
+def print_results(output)
+  output.split(/\n/).map { |s| indent(s) }
+end
+
+def slurp(filename)
+  File.read(filename)
+rescue
+  nil
+end
+
+puts "-----> Decrypting configuration settings"
+
+build_dir, cache_dir, env_dir = ARGV
+
+Dir["#{env_dir}/*"].each do |filename|
+  ENV[File.basename(filename)] = slurp(filename)
+end
+
+ap ENV
+
+exit 0
